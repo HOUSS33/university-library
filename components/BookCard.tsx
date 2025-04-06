@@ -9,16 +9,16 @@ const BookCard = ({
 id,
 title,
 genre,
-color,
-cover,
-isLoanedBook = false
+coverColor,
+coverUrl,
+isLoanedBook = false  // don't remove it let it there we gonna need it later
 }:Book) => {
     return (
 
        <li className={cn(isLoanedBook && 'xs:w-52 w-full')}  id={title}>
 
           <Link href={`/books/${id}`} className={cn( isLoanedBook && 'w-full flex flex-col items-center')}>
-              <BookCover coverColor={color} coverImage={cover} />
+              <BookCover coverColor={coverColor} coverImage={coverUrl} />
 
               <div className={cn('mt-4', !isLoanedBook && 'xs:max-w-40 max-w-28')}>
                 <p className="book-title">{title}</p>
@@ -53,8 +53,8 @@ export default BookCard;
 
 {/* 
          <Link href={`/books/${id}`}>
-            <BookCover coverColor={color} coverImage={cover} />
+            <BookCover coverColor={coverColor} coverImage={coverUrl} />
          </Link>
 */}
 
-{/*{id}{title}{genre}{color}{" "}{cover}*/}
+{/*{id}{title}{genre}{coverColor}{" "}{coverUrl}*/}

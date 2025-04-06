@@ -1,0 +1,48 @@
+import { db } from "@/database/drizzle";
+import { books } from "@/database/schema";
+import React from "react";
+import {eq} from "drizzle-orm"
+import { redirect } from "next/navigation";
+import BookOverview from "@/components/BookOverview";
+import { auth } from "@/auth";
+import BookVideo from "@/components/BookVideo";
+
+const Page = async ({ params }: { params: Promise<{ id: string}>}) => {
+    const id = (await params).id;
+    const session = await auth();
+
+    // Fecth data based on id
+    const [bookDetails] = await db.select().from(books).where(eq(books.id, id)).limit(1);
+
+    if(!bookDetails) redirect("/404");
+
+    console.log(bookDetails.videoUrl);
+
+    return (
+    <>
+      <BookOverview {...bookDetails} userId={session?.user?.id as string}/>
+
+      <div className="book-details">
+        <div className="flex-[1.5]">
+            <section className="flex flex-col gap-7">
+
+                <h3>Video</h3>
+                <BookVideo videoUrl={bookDetails.videoUrl}/>
+
+                <div className="space-y-5 text-xl text-light-100">
+                    {bookDetails.summary.split('\n').map((line, i) =>(
+                        <p key={i}>{line}</p>
+                    )
+                    )}
+                </div>
+
+            </section>
+        </div>
+
+        {/*SIMILAR BOOKS*/}
+      </div>
+    </>
+    )
+};
+
+export default Page;

@@ -2,10 +2,11 @@
 import React from 'react'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn, getInitials } from '@/lib/utils';
+import { cn, getInitials, getFirstNameCapitalized } from '@/lib/utils';
 import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Session } from 'next-auth';
+import LogoutButton from './LogoutButton';
 
 
 const Header = ({session}: {session: Session}) => {
@@ -28,20 +29,34 @@ const Header = ({session}: {session: Session}) => {
             {/*Top Right */}
             <ul className='flex flex-row items-center gap-8'>
 
-                {/*Library Link*/}
+
+
+                {/*Home Link*/}
                 <li>
                     {/*Check /lib/utils.ts for cn()*/}
-                    <Link href="/library" className={cn(  
+                    <Link href="/" className={cn(  
                         'text-base cursor-pointer capitalize', 
-                        pathname === "/library" ? "text-light-200" : "text-light-100",
+                        pathname === "/" ? "text-light-200" : "text-light-100",
                         )}>
-                    Library
+                    Home
+                    </Link>
+                </li>
+
+
+                {/*Search Link*/}
+                <li>
+                    {/*Check /lib/utils.ts for cn()*/}
+                    <Link href="/search" className={cn(  
+                        'text-base cursor-pointer capitalize', 
+                        pathname === "/search" ? "text-light-200" : "text-light-100",
+                        )}>
+                    Search
                     </Link>
                 </li>
 
 
                 {/*Initial Icon*/}
-                <li>
+                <li className='flex flex-row items-center gap-2'>
                     <Link href="/my-profile">
                        <Avatar>
                            {/*<AvatarImage src="https://github.com/shadcn.png" />*/}
@@ -50,8 +65,16 @@ const Header = ({session}: {session: Session}) => {
                             </AvatarFallback>
                         </Avatar>
                     </Link>
+                    
+                    <h1 className='text-light-100 font-bold text-[22px]'>{getFirstNameCapitalized(session?.user?.name)}</h1>
                 </li>
+
+                <li>
+                 {/*<LogoutButton />*/}
+                </li>
+
             </ul>
+
 
         </header>
     )

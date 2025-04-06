@@ -6,19 +6,19 @@ The type.d.ts file is a TypeScript declaration file. It helps define types globa
 
 
 interface Book{
-    id:number
+    id:string;
     title: string;
     author: string; 
     genre: string; 
     rating: number;
-    total_copies: number;
-    available_copies: number;
+    totalCopies: number;
+    availableCopies: number;
     description: string; 
-    color: string; 
-    cover: string; 
-    video: string;
+    coverColor: string; 
+    coverUrl: string; 
+    videoUrl: string;
     summary: string;
-    isLoanedBook?: boolean;
+    createdAt: Date | null;
 }
 
 
@@ -28,4 +28,23 @@ interface AuthCredentials {
     password: string;
     universityId: number;
     universityCard: string; //of type string as it will be a url to an upload image
+}
+
+interface BookParams {
+    title: string;
+    author: string;
+    genre: string;
+    rating: number;
+    coverUrl: string;
+    coverColor: string;
+    description: string;
+    totalCopies: number;
+    videoUrl: string;
+    summary: string;
+}
+
+
+interface BorrowBookParams{
+    bookId: string;
+    userId: string;
 }

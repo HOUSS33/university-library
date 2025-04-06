@@ -14,6 +14,8 @@ import { headers } from "next/headers";
 import ratelimit from "@/lib/ratelimit";
 import { redirect } from "next/navigation";
 
+import { signOut } from "@/auth";
+
 
 
 
@@ -94,6 +96,10 @@ export const signUp = async (params: AuthCredentials) => {     //AuthCredentials
     }
 }
 
+
+export async function logoutAction(){
+    await signOut();
+}
 
 
 

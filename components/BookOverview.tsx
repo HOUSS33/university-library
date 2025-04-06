@@ -2,13 +2,31 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "./ui/button";
 import BookCover from "./BookCover";
+import BorrowBook from "./BorrowBook";
+import { db } from "@/database/drizzle";
+import { users } from "@/database/schema";
+import { eq } from "drizzle-orm";
 
 
+interface Props extends Book {
+    userId: string;
+}
 
 
+const BookOverview = async ({id, userId, title, author, genre, rating, totalCopies, availableCopies, description, coverColor, coverUrl }: Props) => {
 
-const BookOverview = ({id, title, author, genre, rating, total_copies, available_copies, description, color, cover }: Book) => {
+    const [user] = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, userId))
+    .limit(1);
+    
+    if(!user) return null;
 
+    const borrowingEligibility = {
+        isEligible: availableCopies > 0 && user.status === "APPROVED",
+        message: availableCopies <= 0 ? 'Book is not Available' : 'You are not eligible to borrow this book',
+    }
     return(
         <section className="book-overview">
             <div className="flex flex-1 flex-col gap-5">
@@ -25,7 +43,7 @@ const BookOverview = ({id, title, author, genre, rating, total_copies, available
 
                     <div className="flex flex-row gap-1"> 
                         <Image src="/icons/star.svg" alt="star" width={22} height={22}/>
-                        <p>{rating}</p>
+                        <p>{rating}/5</p>
                     </div>
                 </div>
 
@@ -33,11 +51,11 @@ const BookOverview = ({id, title, author, genre, rating, total_copies, available
 
                 <div className="book-copies">
                     <p>
-                        Total Books: <span>{total_copies}</span>
+                        Total Books: <span>{totalCopies}</span>
                     </p>
 
                     <p>
-                        Available Books: <span>{available_copies}</span>
+                        Available Books: <span>{availableCopies}</span>
                     </p>
                 </div>
 
@@ -45,10 +63,11 @@ const BookOverview = ({id, title, author, genre, rating, total_copies, available
                     {description}
                 </p>
 
-                <Button className="book-overview_btn">
-                <Image src="/icons/book.svg" alt="book" width={20} height={20}/>
-                <p className="font-bebas-neue text-xl text-dark-100">Borrow Book</p>
-                </Button>
+                <BorrowBook 
+                 bookId={id} 
+                 userId={userId} 
+                 borrowingEligibility={borrowingEligibility}
+                />
 
             </div>
 
@@ -59,15 +78,15 @@ const BookOverview = ({id, title, author, genre, rating, total_copies, available
                     <BookCover
                       variant="wide"
                       className="z-10"
-                      coverColor={color}
-                      coverImage={cover}
+                      coverColor={coverColor}
+                      coverImage={coverUrl}
                     />
                     
                     <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
                         <BookCover
                           variant="wide"
-                          coverColor={color}
-                          coverImage={cover}
+                          coverColor={coverColor}
+                          coverImage={coverUrl}
                         />
                     </div>
                     

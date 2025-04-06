@@ -17,6 +17,19 @@ export const getInitials = (name: string): string =>
 
 
 
+export function getFirstNameCapitalized(fullName: string | undefined | null): string {
+    // Handle undefined/null cases by returning an empty string or default value
+    if (!fullName) return '';
+    
+    // Split the string by space and take the first element
+    const firstName = fullName.split(' ')[0];
+    
+    // Capitalize first letter and add rest of the letters
+    return firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase();
+}
+
+
+
 
 
 /*
