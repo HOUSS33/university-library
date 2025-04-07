@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const authenticator = async() => {
     try{
         
-        const response = await fetch(`${config.env.apiEndpoint}/api/auth/imagekit`);
+        const response = await fetch(`/api/auth/imagekit`);
 
         if(!response.ok){
             const errorText = await response.text();
