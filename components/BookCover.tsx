@@ -17,6 +17,11 @@ interface Props{
     variant?: BookCoverVariant;
     coverColor?: string;
     coverImage?: string;
+    left?: string;
+    width?: string;
+    height?: string;
+    coverwidth?: string;  // Optional prop with a default value
+    coverheight?: string; // Optional prop with a default value
 }
 
 
@@ -36,6 +41,11 @@ const BookCover = ({
     variant ="medium", 
     coverColor="#012B48", 
     coverImage='https://placehold.co/400x600.png',
+    left= '12%',
+    width= '87.5%',
+    height= '88%',
+    coverwidth = "100%", 
+    coverheight = "100%",
 }: Props) =>{
     return(
         <div 
@@ -46,10 +56,10 @@ const BookCover = ({
             )} >
 
                 {/*BOOK SIDE SVG*/}
-                <BookCoverSvg coverColor={coverColor}/>
+                <BookCoverSvg coverColor={coverColor} coverwidth={coverwidth} coverheight={coverheight}/>
                 
                 <div className="absolute z-10" 
-                     style={{ left: '12%', width:'87.5%', height:'88%' }}
+                     style={{ left: `${left}`, width:`${width}`, height:`${height}` }}
                 >
                     <IKImage
                       path={coverImage} 

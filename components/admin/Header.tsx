@@ -11,7 +11,7 @@ const Header = ( { session }: { session: Session}) => {
                 <p className="text-base text-slate-500">Monitor all of your users and books here</p>
             </div>
 
-            {/*<p>Search</p>*/}
+            <p>Search</p>
         </header>
 );
 }

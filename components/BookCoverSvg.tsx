@@ -1,10 +1,16 @@
-const BookCoverSvg = ({ coverColor }: { coverColor: string }) => {
+interface BookCoverSvgProps {
+    coverColor: string;
+    coverwidth?: string;  // Optional prop with a default value
+    coverheight?: string; // Optional prop with a default value
+  }
+
+const BookCoverSvg = ({ coverColor, coverwidth = "100%", coverheight = "100%" }: BookCoverSvgProps) => {
     return (
         <svg
             preserveAspectRatio="none"
             fill="none"
-            width="100%"
-            height="100%"
+            width={coverwidth}  // Use the prop value or default
+            height={coverheight} // Use the prop value or default
             viewBox="0 0 143 199"
             xmlns="http://www.w3.org/2000/svg"
             className="absolute inset-0"
