@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Eye, X } from "lucide-react"
-import { approveStudent, rejectStudent, viewIdCard } from "@/lib/actions/user"
+import { approveStudent, rejectStudent } from "@/lib/actions/user"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { toast } from "sonner"
 import { getInitials } from "@/lib/utils"
@@ -17,44 +17,67 @@ import config from "@/lib/config"
 
 
 export function StudentTable({ students }: { students: User[] }) {
+
   const [loading, setLoading] = useState<Record<string, boolean>>({})
   const [viewingIdCard, setViewingIdCard] = useState<User | null>(null)
+  const [liststudents, setStudents] = useState<User[]>(students);
+
 
 
   const handleApprove = async (student: User) => {
     setLoading({ ...loading, [student.id]: true })
+
     try {
-      await approveStudent(student.id)
+      const result = await approveStudent(student.id)
+
+      if (!result.success) {
+        toast(`Error`, {
+          description: result.error || "Failed to approve account.",
+        });
+        return;
+      }
 
       toast(`Account approved`, {
         description: `${student.fullName}'s account has been approved successfully.`,
-      })
+      });
+
+      setStudents((prev) => prev.filter((s) => s.id !== student.id))
 
       
     } catch (error) {
 
         toast(`Error`, {
-            description: `Failed to approve account. Please try again.`,
+            description: `Unexpected error occurred. Please try again.`,
           })
 
     } finally {
       setLoading({ ...loading, [student.id]: false })
     }
   }
+
 
   const handleReject = async (student: User) => {
     setLoading({ ...loading, [student.id]: true })
     try {
-      await rejectStudent(student.id)
+      const result = await rejectStudent(student.id)
       
+      if (!result.success) {
+        toast(`Error`, {
+          description: result.error || "Failed to reject account.",
+        });
+        return;
+      }
+
       toast(`Account rejected`, {
-        description: `${student.fullName}'s account has been rejected.`,
+        description: `${student.fullName}'s account has been rejected Successfully.`,
       })
+
+      setStudents((prev) => prev.filter((s) => s.id !== student.id))
 
     } catch (error) {
 
         toast(`"Error"`, {
-            description: `Failed to reject account. Please try again.`,
+            description: `Unexpected error occurred. Please try again.`,
           })
 
     } finally {
@@ -62,16 +85,9 @@ export function StudentTable({ students }: { students: User[] }) {
     }
   }
 
+
   const handleViewIdCard = async (student: User) => {
-    setViewingIdCard(student)
-    try {
-      await viewIdCard(student.id)
-    } catch (error) {
-      
-        toast(`"Error"`, {
-            description: "Failed to load ID card. Please try again.",
-          })
-    }
+    setViewingIdCard(student);
   }
 
 
@@ -93,7 +109,7 @@ export function StudentTable({ students }: { students: User[] }) {
             </thead>
 
             <tbody>
-              {students.map((student) => (
+              {liststudents.map((student) => (
 
                 <tr key={student.id} className="border-t">
 
@@ -132,7 +148,7 @@ export function StudentTable({ students }: { students: User[] }) {
                       onClick={() => handleViewIdCard(student)}
                     >
                       <Eye className="h-4 w-4" />
-                      View ID Card
+                      View University Card
                     </Button>
                   </td>
 

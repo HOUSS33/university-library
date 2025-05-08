@@ -1,48 +1,105 @@
 "use server"
 
+import { eq } from "drizzle-orm";
+import { db } from "@/database/drizzle";
+import { users } from "@/database/schema";
+
+
 export async function approveStudent(studentId: string) {
-  // In a real application, you would:
-  // 1. Validate the request
-  // 2. Update the student status in your database
-  // 3. Send confirmation email to the student
-  // 4. Return success/error status
 
-  console.log(`Approving student with ID: ${studentId}`)
+  try {
+    // 1. Check if the student exists
+    const student = await db
+      .select({ id: users.id, status: users.status })
+      .from(users)
+      .where(eq(users.id, studentId))
+      .limit(1);
 
-  // Simulate a delay for the API call
-  await new Promise((resolve) => setTimeout(resolve, 500))
+    if (!student.length) {
+      return {
+        success: false,
+        error: "Student not found",
+      };
+    }
 
-  return { success: true }
-}
+    if (student[0].status === "APPROVED") {
+      return {
+        success: false,
+        error: "Student is already approved",
+      };
+    }
 
-export async function rejectStudent(studentId: string) {
-  // In a real application, you would:
-  // 1. Validate the request
-  // 2. Update the student status in your database or delete the record
-  // 3. Optionally send rejection email
-  // 4. Return success/error status
+    // 2. Update the student's status to APPROVED
+    await db
+      .update(users)
+      .set({ status: "APPROVED" })
+      .where(eq(users.id, studentId));
 
-  console.log(`Rejecting student with ID: ${studentId}`)
+    // 3. Optionally: send email confirmation (not implemented here)
 
-  // Simulate a delay for the API call
-  await new Promise((resolve) => setTimeout(resolve, 500))
+    return {
+      success: true,
+      message: "Student approved successfully",
+    };
 
-  return { success: true }
-}
+  } catch (error) {
 
-export async function viewIdCard(studentId: string) {
-  // In a real application, you would:
-  // 1. Validate the request
-  // 2. Fetch the ID card image/details from your storage
-  // 3. Return the data or a URL to view it
+    console.error("Error approving student:", error);
+    return {
+      success: false,
+      error: "An error occurred while approving the student",
+    };
 
-  console.log(`Viewing ID card for student with ID: ${studentId}`)
-
-  // Simulate a delay for the API call
-  await new Promise((resolve) => setTimeout(resolve, 500))
-
-  return {
-    success: true,
-    idCardUrl: `/api/id-cards/${studentId}`,
   }
 }
+
+
+
+export async function rejectStudent(studentId: string) {
+  try {
+    // 1. Check if the student exists
+    const student = await db
+      .select({ id: users.id, status: users.status })
+      .from(users)
+      .where(eq(users.id, studentId))
+      .limit(1);
+
+    if (!student.length) {
+      return {
+        success: false,
+        error: "Student not found",
+      };
+    }
+
+    if (student[0].status === "REJECTED") {
+      return {
+        success: false,
+        error: "Student is already rejected",
+      };
+    }
+
+    // 2. Update the student's status to REJECTED
+    await db
+      .update(users)
+      .set({ status: "REJECTED" })
+      .where(eq(users.id, studentId));
+
+    // 3. Optionally: send email confirmation (not implemented here)
+
+    return {
+      success: true,
+      message: "Student rejected successfully",
+    };
+
+  } catch (error) {
+
+    console.error("Error rejecting student:", error);
+    return {
+      success: false,
+      error: "An error occurred while rejecting the student",
+    };
+
+  }
+}
+
+
