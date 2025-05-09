@@ -11,7 +11,7 @@
   <h3 align="center">A University Library Management System with Admin Panel</h3>
 
    <div align="center">
-     Manage Your Library With  The Best IT Solution In The Market !
+     Manage Your Library with the Best IT Solution on the Market — streamline book inventory, handle student activity, automate lending processes, and simplify operations through a powerful admin dashboard.
     </div>
 </div>
 
