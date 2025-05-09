@@ -15,7 +15,8 @@ export const ROLE_ENUM = pgEnum('role', [
 //CONCERN BOOKS
 export const BORROW_STATUS_ENUM = pgEnum('borrow_status', [
     'BORROWED', 
-    'RETURNED'
+    'RETURNED',
+    'LATE RETURN'
 ]);
 
 

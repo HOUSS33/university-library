@@ -45,9 +45,12 @@ interface BookParams {
 
 
 interface BorrowBookParams{
+    id:string;
     bookId: string;
     userId: string;
 }
+
+
 
 interface User{
     id:string;

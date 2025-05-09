@@ -94,17 +94,24 @@ const BookTable = ( { listBooks }: Props) => {
 
           {books.map((book) => (
             <TableRow key={book.id}>
+
               <TableCell className="font-medium">
                 <div className="flex items-center gap-3">
+
                   <div className="relative h-[60px] w-[40px] overflow-hidden rounded-sm border">
                     <BookCover coverColor={book.coverColor} coverImage={book.coverUrl} left="3%" width="25%" height="26.3%" coverheight="60" coverwidth="40"/>
                   </div>
                   <span>{book.title}</span>
+
                 </div>
               </TableCell>
+
               <TableCell>{book.author}</TableCell>
+
               <TableCell>{book.genre}</TableCell>
+
               <TableCell>{formatDate(book.createdAt)}</TableCell>
+              
               <TableCell className="text-right">
                 <div className="flex justify-end gap-2">
                   <Button
