@@ -1,8 +1,36 @@
 'use server';
 
 import { db } from "@/database/drizzle";
-import { books, borrowRecords } from "@/database/schema";
-import { eq } from "drizzle-orm";
+import { users ,books, borrowRecords } from "@/database/schema";
+import { eq, and } from "drizzle-orm";
+
+
+export async function getAllUsersWithBorrowCount() {
+  const allUsers = await db.select().from(users);
+
+  const userData = await Promise.all(
+    allUsers.map(async (user) => {
+      const borrowed = await db
+        .select()
+        .from(borrowRecords)
+        .where(
+          and(
+            eq(borrowRecords.userId, user.id),
+            eq(borrowRecords.status, 'BORROWED')
+          )
+        );
+
+      return {
+        ...user,
+        borrowedCount: borrowed.length,
+      };
+    })
+  );
+
+  return userData;
+}
+
+
 
 export const createBook = async (params: BookParams) =>  {
     try{
@@ -25,6 +53,45 @@ export const createBook = async (params: BookParams) =>  {
         }
     }
 }
+
+
+
+export const editBook = async (id: string | undefined, params: Partial<BookParams>) => {
+  
+  if(id === undefined) return {
+        success: false,
+        message: 'Book not found',
+      };
+
+  try {
+    const updatedBook = await db
+      .update(books)
+      .set({
+        ...params,
+      })
+      .where(eq(books.id, id))
+      .returning();
+
+    if (updatedBook.length === 0) {
+      return {
+        success: false,
+        message: 'Book not found',
+      };
+    }
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(updatedBook[0])),
+    };
+  } catch (error) {
+    console.error(error);
+
+    return {
+      success: false,
+      message: 'An error occurred while updating the book',
+    };
+  }
+};
 
 
 

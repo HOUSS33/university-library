@@ -62,3 +62,21 @@ interface User{
     role: string;
     createdAt: Date; 
 }
+
+/*
+export type User = {
+  id: string;
+  fullName: string;
+  email: string;
+  universityId: number;
+  password: string;
+  universityCard: string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED' | null;
+  role: 'USER' | 'ADMIN' | null;
+  lastActivityDate: string | null;
+  createdAt: Date | null;
+  dateJoined?: Date; // <-- make optional
+  booksBorrowed?: number; // <-- make optional
+  borrowedCount: number;
+};
+*/
