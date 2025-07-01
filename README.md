@@ -101,7 +101,7 @@ and many more, including code architecture and reusability
 
 ### Login Page
 <p align="center">
-  <img src="screenshots/SignIn.PNG" alt="Login" width="700" />
+  <img src="screenshots/SignIn.PNG" alt="Login" width="900" />
 </p>
 
 ## <a name="quick-start">🤸 Quick Start</a>
