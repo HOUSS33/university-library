@@ -20,10 +20,11 @@
 1. 🤖 [Introduction](#introduction)
 2. ⚙️ [Tech Stack](#tech-stack)
 3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🕸️ [Snippets (Code to Copy)](#snippets)
-6. 🔗 [Assets](#links)
-7. 🚀 [More](#more)
+4. 📸 [Screenshots](#Screenshots)
+5. 🤸 [Quick Start](#quick-start)
+6. 🕸️ [Snippets (Code to Copy)](#snippets)
+7. 🔗 [Assets](#links)
+8. 🚀 [More](#more)
 
 
 
@@ -95,6 +96,8 @@ Built with Next.js, TypeScript, and Postgres, the University Library Management 
 👉 **Seamless Email Handling**: Resend for automated email communications, including notifications and updates.  
 
 and many more, including code architecture and reusability 
+
+## <a name="Screenshots">📸 Screenshots</a>
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
