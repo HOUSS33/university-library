@@ -102,6 +102,10 @@ and many more, including code architecture and reusability
 ### Login Page
 ![Login](screenshots/SignIn.PNG)
 
+<p align="center">
+  <img src="screenshots/SignIn.PNG" alt="Login" width="300" />
+</p>
+
 ## <a name="quick-start">🤸 Quick Start</a>
 
 Follow these steps to set up the project locally on your machine.
