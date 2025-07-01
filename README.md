@@ -100,7 +100,9 @@ and many more, including code architecture and reusability
 ## <a name="screenshots">📸 Screenshots</a>
 
 ### Login Page
-![Login](screenshots/SignIn.PNG)
+
+
+
 
 <p align="center">
   <img src="screenshots/SignIn.PNG" alt="Login" width="900" />
