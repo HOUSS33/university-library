@@ -106,7 +106,12 @@ and many more, including code architecture and reusability
 
 ### 📝 Signup Page
 <p align="center">
-  <img src="screenshots/SignUp.PNG" alt="Login" width="800" />
+  <img src="screenshots/SignUp.PNG" alt="SignUp" width="800" />
+</p>
+
+### 🏠 Home Page
+<p align="center">
+  <img src="screenshots/Home.PNG" alt="Home" width="800" />
 </p>
 
 ## <a name="quick-start">🤸 Quick Start</a>
