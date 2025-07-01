@@ -100,7 +100,7 @@ and many more, including code architecture and reusability
 ## <a name="screenshots">📸 Screenshots</a>
 
 ### Login Page
-![Login](screenshots/login.png)
+![Login](screenshots/SignIn.PNG)
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
