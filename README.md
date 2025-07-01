@@ -101,22 +101,22 @@ and many more, including code architecture and reusability
 
 ### 🔑 Login Page
 <p align="center">
-  <img src="screenshots/SignIn.PNG" alt="Login" width="800" />
+  <img src="screenshots/SignIn.PNG" alt="Login"  />
 </p>
 
 ### 📝 Signup Page
 <p align="center">
-  <img src="screenshots/SignUp.PNG" alt="SignUp" width="800" />
+  <img src="screenshots/SignUp.PNG" alt="SignUp"/>
 </p>
 
 ### 🏠 Home Page
 <p align="center">
-  <img src="screenshots/Home.PNG" alt="Home" width="800" />
+  <img src="screenshots/Home.PNG" alt="Home"  />
 </p>
 
 ### 📚 Book Details Page
 <p align="center">
-  <img src="screenshots/BookDetails.PNG" alt="BookDetails" width="800" />
+  <img src="screenshots/BookDetails.PNG" alt="BookDetails" />
 </p>
 
 ## <a name="quick-start">🤸 Quick Start</a>
