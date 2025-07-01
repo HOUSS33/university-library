@@ -114,6 +114,11 @@ and many more, including code architecture and reusability
   <img src="screenshots/Home.PNG" alt="Home" width="800" />
 </p>
 
+### 📚 Book Details Page
+<p align="center">
+  <img src="screenshots/BookDetails.PNG" alt="BookDetails" width="800" />
+</p>
+
 ## <a name="quick-start">🤸 Quick Start</a>
 
 Follow these steps to set up the project locally on your machine.
