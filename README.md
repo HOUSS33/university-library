@@ -97,27 +97,69 @@ Built with Next.js, TypeScript, and Postgres, the University Library Management 
 
 and many more, including code architecture and reusability 
 
-## <a name="screenshots">📸 Screenshots</a>
+## 📸 Screenshots
 
-### 🔑 Login Page
+---
+
+### 👥 User Interface
+
+These screenshots show the main user-facing part of the application where students can browse and borrow books.
+
+#### 🔑 Login Page
 <p align="center">
   <img src="screenshots/SignIn.PNG" alt="Login"  />
 </p>
 
-### 📝 Signup Page
+#### 📝 Signup Page
 <p align="center">
   <img src="screenshots/SignUp.PNG" alt="SignUp"/>
 </p>
 
-### 🏠 Home Page
+#### 🏠 Home Page
 <p align="center">
   <img src="screenshots/Home.PNG" alt="Home"  />
 </p>
 
-### 📚 Book Details Page
+#### 📚 Book Details Page
 <p align="center">
   <img src="screenshots/BookDetails.PNG" alt="BookDetails" />
 </p>
+
+#### 🔍 Search Page
+<p align="center">
+  <img src="screenshots/Search.PNG" alt="Search" />
+</p>
+
+#### 👤 Profile Page
+<p align="center">
+  <img src="screenshots/Profile.PNG" alt="Profile" />
+</p>
+
+---
+
+### 🛠️ Admin Interface
+
+These screenshots will showcase the admin dashboard features for managing books, users, and borrow records. *(To be added soon)*
+
+#### 📊 Dashboard Overview
+<p align="center">
+  <img src="screenshots/HomeAdmin.PNG" alt="Admin Dashboard" />
+</p>
+
+#### 👥 All Users Page
+<p align="center">
+  <img src="screenshots/ALLUSER.PNG" alt="All Users" />
+</p>
+
+#### 📚 All Books Page
+<p align="center">
+  <img src="screenshots/All Books.PNG" alt="All Books" />
+</p>
+
+
+
+---
+
 
 ## <a name="quick-start">🤸 Quick Start</a>
 
