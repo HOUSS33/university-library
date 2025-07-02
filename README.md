@@ -97,8 +97,8 @@ Built with Next.js, TypeScript, and Postgres, the University Library Management 
 
 and many more, including code architecture and reusability 
 
-## 📸 Screenshots
 
+## <a name="screenshots">📸 Screenshots</a>
 ---
 
 ### 👥 User Interface
@@ -122,7 +122,7 @@ These screenshots show the main user-facing part of the application where studen
 
 #### 📚 Book Details Page
 <p align="center">
-  <img src="screenshots/BookDetails.PNG" alt="BookDetails" />
+  <img src="screenshots/bookdetail8.PNG" alt="BookDetails" />
 </p>
 
 #### 🔍 Search Page
@@ -155,6 +155,23 @@ These screenshots will showcase the admin dashboard features for managing books,
 <p align="center">
   <img src="screenshots/All Books.PNG" alt="All Books" />
 </p>
+
+#### 📚 Book Details Page
+<p align="center">
+  <img src="screenshots/BookDetails (1).png" alt="BookDetails" />
+</p>
+
+#### 📨 Account Requests Page
+<p align="center">
+  <img src="screenshots/Account Requests.PNG" alt="Account Requests" />
+</p>
+
+#### 📥 Borrow Requests Page
+<p align="center">
+  <img src="screenshots/BorrowRequests.PNG" alt="Borrow Requests" />
+</p>
+
+
 
 
 
